@@ -1,0 +1,65 @@
+body {
+  margin: auto;
+  background-color: black;
+}
+
+#background {
+  background-image: url(rl-background.jpg);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#leader-board {
+  width: 60vw;
+  height: 37.4vw;
+  margin: 3.5% auto;
+}
+
+.row {
+  margin: auto;
+  padding: 0;
+  list-style: none;
+  background-color: rgba(41, 41, 41, 0.7);
+}
+
+.place {
+  font-family: 'Ubuntu';
+  font-size: 1.2vw;
+  padding: 1vw 0;
+  border: 0.15vw solid rgb(100, 100, 100);
+  color: rgb(214, 252, 255);
+  width: 7.22vw;
+  height: 3.4vw;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+}
+
+.player {
+  font-family: 'Ubuntu';
+  font-size: 1.2vw;
+  padding: 1vw 3vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+  color: rgb(214, 252, 255);
+  width: 45.9vw;
+  height: 3.4vw;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.score {
+  font-family: 'Ubuntu';
+  font-size: 1.2vw;
+  padding: 1vw 0;
+  border: 0.15vw solid rgb(100, 100, 100);
+  color: rgb(214, 252, 255);
+  width: 6.87vw;
+  height: 3.4vw;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+}
