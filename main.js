@@ -30,8 +30,8 @@ function leaderboardUl() {
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
   document.querySelector('#leader-board').appendChild(createUl)
-  for (var num = 0; num < leaderBoardArray.length; num++) {
-    leaderboardList(num)
+  for (var i = 0; i < leaderBoardArray.length; i++) {
+    leaderboardList(i)
   }
 }
 
