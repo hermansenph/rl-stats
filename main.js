@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* global stats */
 function createLeaderBoard(stats) {
   var leaderBoardArray = []
   for (var i = 0; i < stats.length; i++) {
