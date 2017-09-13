@@ -1,4 +1,4 @@
-/* global stats */
+/* global data */
 function createLeaderBoard(stats) {
   var leaderBoardArray = []
   for (var i = 0; i < stats.length; i++) {
