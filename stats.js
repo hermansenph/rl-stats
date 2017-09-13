@@ -90,7 +90,7 @@ var data = [
     "rankedSeasons": {
       "5": {
         "10": {
-          "rankPoints": 1200,
+          "rankPoints": 10000,
           "matchesPlayed": 27,
           "tier": 8,
           "division": 2
