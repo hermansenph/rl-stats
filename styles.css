@@ -4,7 +4,7 @@ body {
 }
 
 #background {
-  background-image: url(rl-background.jpg);
+  background-image: url(images/rl-background.jpg);
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -17,6 +17,43 @@ body {
   width: 60vw;
   height: 37.4vw;
   margin: 3.5% auto;
+}
+
+#header {
+  text-align: center;
+}
+
+#search-icon {
+  position: relative;
+  left: 37vw;
+  top: 3.3vw;
+  width: 10%;
+}
+
+#icon-container {
+  width: 15%;
+}
+
+#searchtop {
+  height: 2.5vw;
+  width: 8vw;
+  border-radius: 0.5vw;
+  margin-top: 1vw;
+  background-color: rgba(138, 189, 192, 0.5);
+  border: 0.1vw solid rgb(175, 175, 175);
+  font-size: 1.2vw;
+  padding: 0 3vw;
+  color: rgb(214, 252, 255);
+  font-family: 'Ubuntu';
+}
+
+#searchtop::placeholder {
+  color: rgb(214, 252, 255);
+}
+
+#searchtop:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
 }
 
 .row {
