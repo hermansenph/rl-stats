@@ -1,13 +1,14 @@
+/* eslint-disable no-undef */
 function createLeaderBoard(stats) {
   var leaderBoardArray = []
   for (var i = 0; i < stats.length; i++) {
     var leaderBoardObject = {
       mmr: stats[i].rankedSeasons[5][10].rankPoints,
-      name: stats[i].displayName,
+      name: stats[i].displayName
     }
     leaderBoardArray.push(leaderBoardObject)
   }
-  leaderBoardArray.sort(function (a,b) {
+  leaderBoardArray.sort(function (a, b) {
     return parseFloat(b.mmr) - parseFloat(a.mmr)
   })
   return leaderBoardArray
