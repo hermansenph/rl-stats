@@ -1,18 +1,16 @@
-var leaderBoardArray = []
-var leaderBoardHeaderElement = 0
-var leaderBoardRowElement = 0
-
-function createLeaderBoard(array) {
-  for (var i = 0; i < array.length; i++) {
+function createLeaderBoard(stats) {
+  var leaderBoardArray = []
+  for (var i = 0; i < stats.length; i++) {
     var leaderBoardObject = {
-      mmr: array[i].rankedSeasons[5][10].rankPoints,
-      name: array[i].displayName,
+      mmr: stats[i].rankedSeasons[5][10].rankPoints,
+      name: stats[i].displayName,
     }
     leaderBoardArray.push(leaderBoardObject)
   }
   leaderBoardArray.sort(function (a,b) {
     return parseFloat(b.mmr) - parseFloat(a.mmr)
   })
+  return leaderBoardArray
 }
 
 function leaderBoardHeader() {
@@ -30,10 +28,10 @@ function leaderBoardHeader() {
   createUl.appendChild(createPlace)
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
-  leaderBoardHeaderElement = document.querySelector('#leader-board').appendChild(createUl)
+  return createUl
 }
 
-function leaderBoardRow(i) {
+function leaderBoardRow(player, i) {
   var createUl = document.createElement('ul')
   var createPlace = document.createElement('li')
   var createPlayer = document.createElement('li')
@@ -43,20 +41,20 @@ function leaderBoardRow(i) {
   createPlayer.className = 'player'
   createScore.className = 'score'
   createPlace.textContent = i + 1
-  createPlayer.textContent = leaderBoardArray[i].name
-  createScore.textContent = leaderBoardArray[i].mmr
+  createPlayer.textContent = player.name
+  createScore.textContent = player.mmr
   createUl.appendChild(createPlace)
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
-  leaderBoardRowElement = document.querySelector('#leader-board').appendChild(createUl)
+  return createUl
 }
 
 var writeLeaderBoard = function updateLeaderBoard() {
-  createLeaderBoard(data)
-  leaderBoardHeaderElement
-  for (var i = 0; i < leaderBoardArray.length; i++) {
-    leaderBoardRow(i)
-    leaderBoardRowElement
+  var leaderBoardList = createLeaderBoard(data)
+  var leaderBoardDOM = document.querySelector('#leader-board')
+  leaderBoardDOM.appendChild(leaderBoardHeader())
+  for (var i = 0; i < leaderBoardList.length; i++) {
+    leaderBoardDOM.appendChild(leaderBoardRow(leaderBoardList[i], i))
   }
 }
 
