@@ -13,54 +13,13 @@ body {
   height: 100%;
 }
 
-#leaderboard {
+#leader-board {
   width: 60vw;
   height: 37.4vw;
   background-color: rgba(53, 55, 64, 0.65);
   margin: 5% auto;
   border: 0.1vw solid rgb(100, 100, 100);
   border-radius: 0.1vw;
-}
-
-#leaderboardheader {
-  list-style: none;
-  margin: auto;
-  padding: 0;
-}
-
-.description {
-  display: inline-block;
-  color: rgb(211, 221, 255);
-  font-family: 'Ubuntu';
-  font-size: 1.2vw;
-  margin: auto;
-  border: 0.1vw solid rgb(100, 100, 100);
-  box-sizing: border-box;
-  height: 3.4vw;
-}
-
-#rank {
-  padding: 1.5% 3.185%;
-  width: 7.22vw;
-  box-sizing: border-box;
-}
-
-#name {
-  padding: 1.5% 69% 1.5% 3vw;
-  width: 45.9vw;
-  box-sizing: border-box;
-}
-
-#mmr {
-  padding: 1.5% 3.185%;
-  width: 6.87vw;
-  box-sizing: border-box;
-}
-
-#leaderboardbody {
-  padding: 0;
-  margin: auto;
-  list-style: none;
 }
 
 .row {
