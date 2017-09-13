@@ -16,23 +16,21 @@ body {
 #leader-board {
   width: 60vw;
   height: 37.4vw;
-  background-color: rgba(41, 41, 41, 0.7);
-  margin: 5% auto;
-  border: 0.1vw solid rgb(100, 100, 100);
-  border-radius: 0.1vw;
+  margin: 3.5% auto;
 }
 
 .row {
   margin: auto;
   padding: 0;
   list-style: none;
+  background-color: rgba(41, 41, 41, 0.7);
 }
 
 .place {
   font-family: 'Ubuntu';
   font-size: 1.2vw;
   padding: 1vw 0;
-  border: 0.1vw solid rgb(100, 100, 100);
+  border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 7.22vw;
   height: 3.4vw;
@@ -45,7 +43,7 @@ body {
   font-family: 'Ubuntu';
   font-size: 1.2vw;
   padding: 1vw 3vw;
-  border: 0.1vw solid rgb(100, 100, 100);
+  border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 45.9vw;
   height: 3.4vw;
@@ -57,7 +55,7 @@ body {
   font-family: 'Ubuntu';
   font-size: 1.2vw;
   padding: 1vw 0;
-  border: 0.1vw solid rgb(100, 100, 100);
+  border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 6.87vw;
   height: 3.4vw;

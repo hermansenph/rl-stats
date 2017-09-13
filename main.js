@@ -1,6 +1,8 @@
 var leaderBoardArray = []
+var leaderBoardHeaderElement = 0
+var leaderBoardRowElement = 0
 
-function writeLeaderboard(array) {
+function createLeaderBoard(array) {
   for (var i = 0; i < array.length; i++) {
     var leaderBoardObject = {
       mmr: array[i].rankedSeasons[5][10].rankPoints,
@@ -11,10 +13,9 @@ function writeLeaderboard(array) {
   leaderBoardArray.sort(function (a,b) {
     return parseFloat(b.mmr) - parseFloat(a.mmr)
   })
-  leaderboardUl()
 }
 
-function leaderboardUl() {
+function leaderBoardHeader() {
   var createUl = document.createElement('ul')
   var createPlace = document.createElement('li')
   var createPlayer = document.createElement('li')
@@ -29,13 +30,10 @@ function leaderboardUl() {
   createUl.appendChild(createPlace)
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
-  document.querySelector('#leader-board').appendChild(createUl)
-  for (var i = 0; i < leaderBoardArray.length; i++) {
-    leaderboardList(i)
-  }
+  leaderBoardHeaderElement = document.querySelector('#leader-board').appendChild(createUl)
 }
 
-function leaderboardList(i) {
+function leaderBoardRow(i) {
   var createUl = document.createElement('ul')
   var createPlace = document.createElement('li')
   var createPlayer = document.createElement('li')
@@ -50,7 +48,16 @@ function leaderboardList(i) {
   createUl.appendChild(createPlace)
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
-  document.querySelector('#leader-board').appendChild(createUl)
+  leaderBoardRowElement = document.querySelector('#leader-board').appendChild(createUl)
 }
 
-addEventListener('load', writeLeaderboard(data))
+var writeLeaderBoard = function updateLeaderBoard() {
+  createLeaderBoard(data)
+  leaderBoardHeaderElement
+  for (var i = 0; i < leaderBoardArray.length; i++) {
+    leaderBoardRow(i)
+    leaderBoardRowElement
+  }
+}
+
+addEventListener('load', writeLeaderBoard)
