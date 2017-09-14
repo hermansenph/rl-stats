@@ -73,6 +73,13 @@ function clearPlayerStats() {
   $playerStats.innerHTML = ''
 }
 
+function createPlayerName() {
+  var $playerName = document.createElement('p')
+  $playerName.textContent = $search.value
+  $playerName.id = 'player-name'
+  $playerStats.appendChild($playerName)
+}
+
 function createStatHeader() {
   var createTable1 = document.createElement('table')
   var create$tr1 = document.createElement('tr')
@@ -165,6 +172,7 @@ function generateData(event) {
       var $tableStats = document.querySelector('#player-stats')
       removeElement($leaderboard)
       clearPlayerStats()
+      createPlayerName()
       var $tableStatsPoints = createStatHeader()
       var $tableStatsMMR = createMMRHeader()
       $tableStats.appendChild($tableStatsPoints)
