@@ -65,7 +65,8 @@ var $search = document.querySelector('#search-top')
 var $leaderboard = document.querySelector('#leader-board')
 
 function removeElement(element) {
-  element.id = 'hidden'
+  element.className = 'hidden'
+  element.innerHTML = ''
 }
 
 $search.addEventListener('keydown', function (event) {
