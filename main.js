@@ -62,11 +62,17 @@ var writeLeaderBoard = function updateLeaderBoard() {
 addEventListener('load', writeLeaderBoard)
 
 var $search = document.querySelector('#search-top')
+var $leaderboard = document.querySelector('#leader-board')
+
+function removeElement(element) {
+  element.id = 'hidden'
+}
 
 $search.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     for (var i = 0; i < data.length; i++) {
       if ($search.value === data[i].displayName) {
+        removeElement($leaderboard)
         return data[i]
       }
     }

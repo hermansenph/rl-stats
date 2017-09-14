@@ -13,6 +13,10 @@ body {
   height: 100%;
 }
 
+#hidden {
+  display: none;
+}
+
 #leader-board {
   width: 60vw;
   height: 37.4vw;
