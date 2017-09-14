@@ -104,3 +104,34 @@ body {
   display: inline-block;
   text-align: center;
 }
+
+#player-stats {
+  margin: 3.5% 0;
+  text-align: center;
+}
+
+.table {
+  margin: 0 auto;
+  display: inline-block;
+  font-family: 'Ubuntu';
+  color: rgb(214, 252, 255);
+  font-size: 1.2vw;
+  background-color: rgba(41, 41, 41, 0.7);
+  box-sizing: border-box;
+}
+
+th {
+  font-size: 2vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+  padding: 0.5vw;
+}
+
+td {
+  font-size: 1.2vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+}
+
+#player-stats-rank {
+  position: relative;
+  bottom: 3.75vw;
+}
