@@ -69,7 +69,7 @@ function removeElement(element) {
   element.className = 'hidden'
   element.innerHTML = ''
 }
-function replacePlayerStats() {
+function clearPlayerStats() {
   $playerStats.innerHTML = ''
 }
 
@@ -149,24 +149,34 @@ function createStatMMR(statistics, i) {
   return create$tr1
 }
 
-$search.addEventListener('keydown', function (event) {
+var searchPlayer = function (displayName, players) {
+  for (var i = 0; i < players.length; i++) {
+    if (displayName === players[i].displayName) {
+      return players[i]
+    }
+  }
+}
+
+function generateData(event) {
   if (event.keyCode === 13) {
-    for (var i = 0; i < data.length; i++) {
-      if ($search.value === data[i].displayName) {
-        var $tableStats = document.querySelector('#player-stats')
-        removeElement($leaderboard)
-        replacePlayerStats()
-        $tableStats.appendChild(createStatHeader())
-        $tableStats.appendChild(createMMRHeader())
-        var $tableStatsPoints = document.querySelector('#player-stats-points')
-        var $tableStatsMMR = document.querySelector('#player-stats-rank')
-        for (var num = 0; num < 6; num++) {
-          $tableStatsPoints.appendChild(createStatScore(data[i], num))
-        }
-        for (num = 0; num < 4; num++) {
-          $tableStatsMMR.appendChild(createStatMMR(data[i], num))
-        }
+    var searchName = $search.value
+    var player = searchPlayer(searchName, data)
+    if (player !== undefined) {
+      var $tableStats = document.querySelector('#player-stats')
+      removeElement($leaderboard)
+      clearPlayerStats()
+      var $tableStatsPoints = createStatHeader()
+      var $tableStatsMMR = createMMRHeader()
+      $tableStats.appendChild($tableStatsPoints)
+      $tableStats.appendChild($tableStatsMMR)
+      for (var num = 0; num < 6; num++) {
+        $tableStatsPoints.appendChild(createStatScore(player, num))
+      }
+      for (num = 0; num < 4; num++) {
+        $tableStatsMMR.appendChild(createStatMMR(player, num))
       }
     }
   }
-})
+}
+
+$search.addEventListener('keydown', generateData)
