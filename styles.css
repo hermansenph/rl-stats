@@ -34,7 +34,7 @@ body {
   width: 15%;
 }
 
-#searchtop {
+#search-top {
   height: 2.5vw;
   width: 8vw;
   border-radius: 0.5vw;
@@ -47,11 +47,11 @@ body {
   font-family: 'Ubuntu';
 }
 
-#searchtop::placeholder {
+#search-top::placeholder {
   color: rgb(214, 252, 255);
 }
 
-#searchtop:focus {
+#search-top:focus {
   outline: none;
   box-shadow: 0 0 1vw rgb(214, 252, 255);
 }

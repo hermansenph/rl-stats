@@ -1,5 +1,5 @@
 /* global data */
-function createLeaderBoard(stats) {
+function createLeaderBoardArray(stats) {
   var leaderBoardArray = []
   for (var i = 0; i < stats.length; i++) {
     var leaderBoardObject = {
@@ -51,7 +51,7 @@ function leaderBoardRow(player, i) {
 }
 
 var writeLeaderBoard = function updateLeaderBoard() {
-  var leaderBoardList = createLeaderBoard(data)
+  var leaderBoardList = createLeaderBoardArray(data)
   var leaderBoardDOM = document.querySelector('#leader-board')
   leaderBoardDOM.appendChild(leaderBoardHeader())
   for (var i = 0; i < leaderBoardList.length; i++) {
@@ -60,3 +60,15 @@ var writeLeaderBoard = function updateLeaderBoard() {
 }
 
 addEventListener('load', writeLeaderBoard)
+
+var $search = document.querySelector('#search-top')
+
+$search.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) {
+    for (var i = 0; i < data.length; i++) {
+      if ($search.value === data[i].displayName) {
+        return data[i]
+      }
+    }
+  }
+})
