@@ -4,7 +4,7 @@ body {
 }
 
 #background {
-  background-image: url(rl-background.jpg);
+  background-image: url(images/rl-background.jpg);
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -13,10 +13,51 @@ body {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 #leader-board {
   width: 60vw;
   height: 37.4vw;
   margin: 3.5% auto;
+}
+
+#header {
+  text-align: center;
+}
+
+#search-icon {
+  position: relative;
+  left: 37vw;
+  top: 3.3vw;
+  width: 10%;
+}
+
+#icon-container {
+  width: 15%;
+}
+
+#search-top {
+  height: 2.5vw;
+  width: 8vw;
+  border-radius: 0.5vw;
+  margin-top: 1vw;
+  background-color: rgba(138, 189, 192, 0.5);
+  border: 0.1vw solid rgb(175, 175, 175);
+  font-size: 1.2vw;
+  padding: 0 3vw;
+  color: rgb(214, 252, 255);
+  font-family: 'Ubuntu';
+}
+
+#search-top::placeholder {
+  color: rgb(214, 252, 255);
+}
+
+#search-top:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
 }
 
 .row {
@@ -61,5 +102,43 @@ body {
   height: 3.4vw;
   box-sizing: border-box;
   display: inline-block;
+  text-align: center;
+}
+
+#player-stats {
+  margin: 3.5% 0;
+  text-align: center;
+}
+
+.table {
+  margin: 0 auto;
+  display: inline-block;
+  font-family: 'Ubuntu';
+  color: rgb(214, 252, 255);
+  font-size: 1.2vw;
+  background-color: rgba(41, 41, 41, 0.7);
+  box-sizing: border-box;
+}
+
+th {
+  font-size: 2vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+  padding: 0.5vw;
+}
+
+td {
+  font-size: 1.2vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+}
+
+#player-stats-rank {
+  position: relative;
+  bottom: 3.75vw;
+}
+
+#player-name {
+  font-family: 'Ubuntu';
+  color: rgb(214, 252, 255);
+  font-size: 4vw;
   text-align: center;
 }
