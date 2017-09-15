@@ -20,7 +20,7 @@ body {
 #leader-board {
   width: 60vw;
   height: 37.4vw;
-  margin: 3.5% auto;
+  margin: 2% auto;
 }
 
 #header {
@@ -141,4 +141,22 @@ td {
   color: rgb(214, 252, 255);
   font-size: 4vw;
   text-align: center;
+}
+
+.button {
+  width: 20%;
+  height: 3.4vw;
+  margin-left: 3.9%;
+  margin-bottom: 0.5vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+  background-color: rgba(41, 41, 41, 0.7);
+  border-radius: 0.25vw;
+  font-family: 'Ubuntu';
+  font-size: 1.5vw;
+  color: rgb(214, 252, 255);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
 }

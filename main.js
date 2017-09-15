@@ -14,6 +14,35 @@ function createLeaderBoardArray(stats) {
   return leaderBoardArray
 }
 
+function leaderBoardButtons() {
+  var createDiv = document.createElement('div')
+  var createSoloDuel = document.createElement('button')
+  var createDoubles = document.createElement('button')
+  var createSoloStandard = document.createElement('button')
+  var createStandard = document.createElement('button')
+  createSoloDuel.className = 'button'
+  createDoubles.className = 'button'
+  createSoloStandard.className = 'button'
+  createStandard.className = 'button'
+  createSoloDuel.setAttribute('type', 'button')
+  createDoubles.setAttribute('type', 'button')
+  createSoloStandard.setAttribute('type', 'button')
+  createStandard.setAttribute('type', 'button')
+  createSoloDuel.id = 'solo-duel'
+  createDoubles.id = 'doubles'
+  createSoloStandard.id = 'solo-standard'
+  createStandard.id = 'standard'
+  createSoloDuel.textContent = 'Solo Duel'
+  createDoubles.textContent = 'Doubles'
+  createSoloStandard.textContent = 'Solo Standard'
+  createStandard.textContent = 'Standard'
+  createDiv.appendChild(createSoloDuel)
+  createDiv.appendChild(createDoubles)
+  createDiv.appendChild(createSoloStandard)
+  createDiv.appendChild(createStandard)
+  return createDiv
+}
+
 function leaderBoardHeader() {
   var createUl = document.createElement('ul')
   var createPlace = document.createElement('li')
@@ -53,6 +82,7 @@ function leaderBoardRow(player, i) {
 var writeLeaderBoard = function updateLeaderBoard() {
   var leaderBoardList = createLeaderBoardArray(data)
   var leaderBoardDOM = document.querySelector('#leader-board')
+  leaderBoardDOM.appendChild(leaderBoardButtons())
   leaderBoardDOM.appendChild(leaderBoardHeader())
   for (var i = 0; i < leaderBoardList.length; i++) {
     leaderBoardDOM.appendChild(leaderBoardRow(leaderBoardList[i], i))
