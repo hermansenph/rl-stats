@@ -1,10 +1,31 @@
 /* global data */
-function createLeaderBoardArray(stats) {
+function createLeaderBoardArray(stats, gameMode) {
   var leaderBoardArray = []
+  var leaderBoardObject = {}
   for (var i = 0; i < stats.length; i++) {
-    var leaderBoardObject = {
-      mmr: stats[i].rankedSeasons[5][10].rankPoints,
-      name: stats[i].displayName
+    if (gameMode === 'Solo Duel') {
+      leaderBoardObject = {
+        mmr: stats[i].rankedSeasons[5][10].rankPoints,
+        name: stats[i].displayName
+      }
+    }
+    if (gameMode === 'Doubles') {
+      leaderBoardObject = {
+        mmr: stats[i].rankedSeasons[5][11].rankPoints,
+        name: stats[i].displayName
+      }
+    }
+    if (gameMode === 'Solo Standard') {
+      leaderBoardObject = {
+        mmr: stats[i].rankedSeasons[5][12].rankPoints,
+        name: stats[i].displayName
+      }
+    }
+    if (gameMode === 'Standard') {
+      leaderBoardObject = {
+        mmr: stats[i].rankedSeasons[5][13].rankPoints,
+        name: stats[i].displayName
+      }
     }
     leaderBoardArray.push(leaderBoardObject)
   }
@@ -28,6 +49,7 @@ function leaderBoardButtons() {
   createDoubles.setAttribute('type', 'button')
   createSoloStandard.setAttribute('type', 'button')
   createStandard.setAttribute('type', 'button')
+  createDiv.id = 'buttons'
   createSoloDuel.id = 'solo-duel'
   createDoubles.id = 'doubles'
   createSoloStandard.id = 'solo-standard'
@@ -79,13 +101,24 @@ function leaderBoardRow(player, i) {
   return createUl
 }
 
-var writeLeaderBoard = function updateLeaderBoard() {
-  var leaderBoardList = createLeaderBoardArray(data)
+var writeLeaderBoard = function updateLeaderBoard(event) {
+  var leaderBoardList = createLeaderBoardArray(data, event.target.textContent)
   var leaderBoardDOM = document.querySelector('#leader-board')
-  leaderBoardDOM.appendChild(leaderBoardButtons())
-  leaderBoardDOM.appendChild(leaderBoardHeader())
-  for (var i = 0; i < leaderBoardList.length; i++) {
-    leaderBoardDOM.appendChild(leaderBoardRow(leaderBoardList[i], i))
+  var createDiv = document.createElement('div')
+  createDiv.id = 'leader-board-rows'
+  var leaderBoardDiv = document.querySelector('#leader-board-rows')
+  if (document.querySelector('#buttons') === null) {
+    leaderBoardDOM.appendChild(leaderBoardButtons())
+    var $buttons = document.querySelector('#buttons')
+    $buttons.addEventListener('click', writeLeaderBoard)
+    leaderBoardDOM.appendChild(createDiv)
+  }
+  if (event.target.textContent !== null) {
+    clearLeaderBoard(leaderBoardDiv)
+    leaderBoardDiv.appendChild(leaderBoardHeader())
+    for (var i = 0; i < leaderBoardList.length; i++) {
+      leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[i], i))
+    }
   }
 }
 
@@ -99,6 +132,11 @@ function removeElement(element) {
   element.className = 'hidden'
   element.innerHTML = ''
 }
+
+function clearLeaderBoard(div) {
+  div.innerHTML = ''
+}
+
 function clearPlayerStats() {
   $playerStats.innerHTML = ''
 }
@@ -132,7 +170,7 @@ function createMMRHeader() {
   var create$th4 = document.createElement('th')
   createTable2.className = 'table'
   createTable2.id = 'player-stats-rank'
-  create$th3.textContent = 'GameMode'
+  create$th3.textContent = 'Game Mode'
   create$th4.textContent = 'MMR'
   create$tr2.appendChild(create$th3)
   create$tr2.appendChild(create$th4)
