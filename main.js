@@ -113,7 +113,7 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
     $buttons.addEventListener('click', writeLeaderBoard)
     leaderBoardDOM.appendChild(createDiv)
   }
-  if (event.target.textContent !== null) {
+  if (event.target.textContent !== null && event.target.id !== 'buttons') {
     clearLeaderBoard(leaderBoardDiv)
     leaderBoardDiv.appendChild(leaderBoardHeader())
     for (var i = 0; i < leaderBoardList.length; i++) {
