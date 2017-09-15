@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 var data = [
   {
-    'displayName': 'AeonLucid',
+    'displayName': 'Hoshiki',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 366,
+      'goals': 342,
+      'mvps': 347,
+      'saves': 941,
+      'shots': 837,
+      'assists': 483
     },
     'rankedSeasons': {
       '5': {
@@ -19,19 +19,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 509,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 928,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 736,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -40,14 +40,14 @@ var data = [
     }
   },
   {
-    'displayName': 'Ghostboy',
+    'displayName': 'Peter',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 836,
+      'goals': 283,
+      'mvps': 917,
+      'saves': 928,
+      'shots': 726,
+      'assists': 253
     },
     'rankedSeasons': {
       '5': {
@@ -58,19 +58,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 382,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 943,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 347,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -81,12 +81,12 @@ var data = [
   {
     'displayName': 'Tim',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 635,
+      'goals': 948,
+      'mvps': 374,
+      'saves': 736,
+      'shots': 625,
+      'assists': 288
     },
     'rankedSeasons': {
       '5': {
@@ -97,19 +97,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 937,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 152,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 162,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -120,12 +120,12 @@ var data = [
   {
     'displayName': 'Ron',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 0,
+      'goals': 0,
+      'mvps': 0,
+      'saves': 0,
+      'shots': 0,
+      'assists': 0
     },
     'rankedSeasons': {
       '5': {
@@ -136,19 +136,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 0,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 0,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 0,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -159,12 +159,12 @@ var data = [
   {
     'displayName': 'Ryan',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 746,
+      'goals': 274,
+      'mvps': 495,
+      'saves': 374,
+      'shots': 937,
+      'assists': 375
     },
     'rankedSeasons': {
       '5': {
@@ -175,19 +175,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 923,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 273,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 284,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -198,12 +198,12 @@ var data = [
   {
     'displayName': 'Alex',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 173,
+      'goals': 458,
+      'mvps': 284,
+      'saves': 373,
+      'shots': 898,
+      'assists': 263
     },
     'rankedSeasons': {
       '5': {
@@ -214,19 +214,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 395,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 264,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 232,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -237,12 +237,12 @@ var data = [
   {
     'displayName': 'Raf',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 999,
+      'goals': 274,
+      'mvps': 227,
+      'saves': 884,
+      'shots': 276,
+      'assists': 252
     },
     'rankedSeasons': {
       '5': {
@@ -253,19 +253,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 274,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 294,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 842,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -276,12 +276,12 @@ var data = [
   {
     'displayName': 'Riley',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 294,
+      'goals': 287,
+      'mvps': 298,
+      'saves': 676,
+      'shots': 398,
+      'assists': 561
     },
     'rankedSeasons': {
       '5': {
@@ -292,19 +292,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 267,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 985,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 236,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -315,12 +315,12 @@ var data = [
   {
     'displayName': 'Victor',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 345,
+      'goals': 464,
+      'mvps': 724,
+      'saves': 239,
+      'shots': 347,
+      'assists': 236
     },
     'rankedSeasons': {
       '5': {
@@ -331,19 +331,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 235,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 843,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 346,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
@@ -354,12 +354,12 @@ var data = [
   {
     'displayName': 'Chris',
     'stats': {
-      'wins': 674,
-      'goals': 2215,
-      'mvps': 344,
-      'saves': 881,
-      'shots': 4339,
-      'assists': 607
+      'wins': 895,
+      'goals': 345,
+      'mvps': 938,
+      'saves': 674,
+      'shots': 392,
+      'assists': 273
     },
     'rankedSeasons': {
       '5': {
@@ -370,19 +370,19 @@ var data = [
           'division': 2
         },
         '11': {
-          'rankPoints': 809,
+          'rankPoints': 582,
           'matchesPlayed': 17,
           'tier': 10,
           'division': 0
         },
         '12': {
-          'rankPoints': 557,
+          'rankPoints': 594,
           'matchesPlayed': 12,
           'tier': 6,
           'division': 1
         },
         '13': {
-          'rankPoints': 776,
+          'rankPoints': 329,
           'matchesPlayed': 39,
           'tier': 9,
           'division': 2
