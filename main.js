@@ -1,30 +1,66 @@
 /* global data */
-function createLeaderBoardArray(stats, gameMode) {
+function createLeaderBoardArray(datamodel, gameMode) {
   var leaderBoardArray = []
   var leaderBoardObject = {}
-  for (var i = 0; i < stats.length; i++) {
+  for (var i = 0; i < datamodel.length; i++) {
     if (gameMode === 'Solo Duel') {
       leaderBoardObject = {
-        mmr: stats[i].rankedSeasons[5][10].rankPoints,
-        name: stats[i].displayName
+        mmr: datamodel[i].rankedSeasons[5][10].rankPoints,
+        name: datamodel[i].displayName
       }
     }
     if (gameMode === 'Doubles') {
       leaderBoardObject = {
-        mmr: stats[i].rankedSeasons[5][11].rankPoints,
-        name: stats[i].displayName
+        mmr: datamodel[i].rankedSeasons[5][11].rankPoints,
+        name: datamodel[i].displayName
       }
     }
     if (gameMode === 'Solo Standard') {
       leaderBoardObject = {
-        mmr: stats[i].rankedSeasons[5][12].rankPoints,
-        name: stats[i].displayName
+        mmr: datamodel[i].rankedSeasons[5][12].rankPoints,
+        name: datamodel[i].displayName
       }
     }
     if (gameMode === 'Standard') {
       leaderBoardObject = {
-        mmr: stats[i].rankedSeasons[5][13].rankPoints,
-        name: stats[i].displayName
+        mmr: datamodel[i].rankedSeasons[5][13].rankPoints,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'Wins') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.wins,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'Goals') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.goals,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'MVPs') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.mvps,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'Saves') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.saves,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'Shots') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.shots,
+        name: datamodel[i].displayName
+      }
+    }
+    if (gameMode === 'Assists') {
+      leaderBoardObject = {
+        mmr: datamodel[i].stats.assists,
+        name: datamodel[i].displayName
       }
     }
     leaderBoardArray.push(leaderBoardObject)
@@ -35,7 +71,7 @@ function createLeaderBoardArray(stats, gameMode) {
   return leaderBoardArray
 }
 
-function leaderBoardButtons() {
+function leaderBoardMMRButtons() {
   var createDiv = document.createElement('div')
   var createSoloDuel = document.createElement('button')
   var createDoubles = document.createElement('button')
@@ -49,7 +85,7 @@ function leaderBoardButtons() {
   createDoubles.setAttribute('type', 'button')
   createSoloStandard.setAttribute('type', 'button')
   createStandard.setAttribute('type', 'button')
-  createDiv.id = 'buttons'
+  createDiv.className = 'buttons'
   createSoloDuel.id = 'solo-duel'
   createDoubles.id = 'doubles'
   createSoloStandard.id = 'solo-standard'
@@ -65,7 +101,49 @@ function leaderBoardButtons() {
   return createDiv
 }
 
-function leaderBoardHeader() {
+function leaderBoardStatButtons() {
+  var createDiv = document.createElement('div')
+  var createWins = document.createElement('button')
+  var createGoals = document.createElement('button')
+  var createMVPs = document.createElement('button')
+  var createSaves = document.createElement('button')
+  var createShots = document.createElement('button')
+  var createAssists = document.createElement('button')
+  createWins.className = 'button'
+  createGoals.className = 'button'
+  createMVPs.className = 'button'
+  createSaves.className = 'button'
+  createShots.className = 'button'
+  createAssists.className = 'button'
+  createWins.setAttribute('type', 'button')
+  createGoals.setAttribute('type', 'button')
+  createMVPs.setAttribute('type', 'button')
+  createSaves.setAttribute('type', 'button')
+  createShots.setAttribute('type', 'button')
+  createAssists.setAttribute('type', 'button')
+  createDiv.className = 'buttons'
+  createWins.id = 'wins'
+  createGoals.id = 'goals'
+  createMVPs.id = 'mvps'
+  createSaves.id = 'saves'
+  createShots.id = 'shots'
+  createAssists.id = 'assists'
+  createWins.textContent = 'Wins'
+  createGoals.textContent = 'Goals'
+  createMVPs.textContent = 'MVPs'
+  createSaves.textContent = 'Saves'
+  createShots.textContent = 'Shots'
+  createAssists.textContent = 'Assists'
+  createDiv.appendChild(createWins)
+  createDiv.appendChild(createGoals)
+  createDiv.appendChild(createMVPs)
+  createDiv.appendChild(createSaves)
+  createDiv.appendChild(createShots)
+  createDiv.appendChild(createAssists)
+  return createDiv
+}
+
+function leaderBoardHeader(text) {
   var createUl = document.createElement('ul')
   var createPlace = document.createElement('li')
   var createPlayer = document.createElement('li')
@@ -76,7 +154,7 @@ function leaderBoardHeader() {
   createScore.className = 'score'
   createPlace.textContent = 'RANK'
   createPlayer.textContent = 'NAME'
-  createScore.textContent = 'MMR'
+  createScore.textContent = 'SCORE'
   createUl.appendChild(createPlace)
   createUl.appendChild(createPlayer)
   createUl.appendChild(createScore)
@@ -107,15 +185,18 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
   var createDiv = document.createElement('div')
   createDiv.id = 'leader-board-rows'
   var leaderBoardDiv = document.querySelector('#leader-board-rows')
-  if (document.querySelector('#buttons') === null) {
-    leaderBoardDOM.appendChild(leaderBoardButtons())
-    var $buttons = document.querySelector('#buttons')
+  if (document.querySelector('.buttons') === null) {
+    leaderBoardDOM.appendChild(leaderBoardMMRButtons())
+    leaderBoardDOM.appendChild(leaderBoardStatButtons())
+    var $buttons = document.querySelectorAll('.buttons')[0]
+    var $buttons2 = document.querySelectorAll('.buttons')[1]
     $buttons.addEventListener('click', writeLeaderBoard)
+    $buttons2.addEventListener('click', writeLeaderBoard)
     leaderBoardDOM.appendChild(createDiv)
   }
-  if (event.target.textContent !== null && event.target.id !== 'buttons') {
+  if (event.target.textContent !== null && event.target.className !== 'buttons') {
     clearLeaderBoard(leaderBoardDiv)
-    leaderBoardDiv.appendChild(leaderBoardHeader())
+    leaderBoardDiv.appendChild(leaderBoardHeader(event.target.textContent))
     for (var i = 0; i < leaderBoardList.length; i++) {
       leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[i], i))
     }
