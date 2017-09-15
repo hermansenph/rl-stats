@@ -20,7 +20,7 @@ body {
 #leader-board {
   width: 60vw;
   height: 37.4vw;
-  margin: 3.5% auto;
+  margin: 2% auto;
 }
 
 #header {
@@ -69,12 +69,12 @@ body {
 
 .place {
   font-family: 'Ubuntu';
-  font-size: 1.2vw;
-  padding: 1vw 0;
+  font-size: 1vw;
+  padding: 0.8vw 0;
   border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 7.22vw;
-  height: 3.4vw;
+  height: 3vw;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
@@ -82,24 +82,24 @@ body {
 
 .player {
   font-family: 'Ubuntu';
-  font-size: 1.2vw;
-  padding: 1vw 3vw;
+  font-size: 1vw;
+  padding: 0.8vw 3vw;
   border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 45.9vw;
-  height: 3.4vw;
+  height: 3vw;
   box-sizing: border-box;
   display: inline-block;
 }
 
 .score {
   font-family: 'Ubuntu';
-  font-size: 1.2vw;
-  padding: 1vw 0;
+  font-size: 1vw;
+  padding: 0.8vw 0;
   border: 0.15vw solid rgb(100, 100, 100);
   color: rgb(214, 252, 255);
   width: 6.87vw;
-  height: 3.4vw;
+  height: 3vw;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
@@ -121,7 +121,7 @@ body {
 }
 
 th {
-  font-size: 2vw;
+  font-size: 1.5vw;
   border: 0.15vw solid rgb(100, 100, 100);
   padding: 0.5vw;
 }
@@ -141,4 +141,22 @@ td {
   color: rgb(214, 252, 255);
   font-size: 4vw;
   text-align: center;
+}
+
+.button {
+  width: 20%;
+  height: 2.5vw;
+  margin-left: 3.9%;
+  margin-bottom: 0.5vw;
+  border: 0.15vw solid rgb(100, 100, 100);
+  background-color: rgba(41, 41, 41, 0.7);
+  border-radius: 0.25vw;
+  font-family: 'Ubuntu';
+  font-size: 1.2vw;
+  color: rgb(214, 252, 255);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
 }
