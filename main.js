@@ -206,11 +206,12 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
 addEventListener('load', writeLeaderBoard)
 
 var $search = document.querySelector('#search-top')
+var $searchCompare = ''
 var $leaderboard = document.querySelector('#leader-board')
 var $playerStats = document.querySelector('#player-stats')
 
 function removeElement(element) {
-  element.className = 'hidden'
+  element.className += ' hidden'
   element.innerHTML = ''
 }
 
@@ -328,6 +329,38 @@ function addComparisonSearch() {
   return create$div
 }
 
+function createStatScoreComparison(statistics, i) {
+  var create$td1 = document.createElement('td')
+  var statArray = [
+    statistics.stats.wins,
+    statistics.stats.goals,
+    statistics.stats.mvps,
+    statistics.stats.saves,
+    statistics.stats.shots,
+    statistics.stats.assists
+  ]
+  create$td1.textContent = statArray[i]
+  return create$td1
+}
+
+function createStatMMRComparison(statistics, i) {
+  var create$td1 = document.createElement('td')
+  var statArray = [
+    statistics.rankedSeasons[5][10].rankPoints,
+    statistics.rankedSeasons[5][11].rankPoints,
+    statistics.rankedSeasons[5][12].rankPoints,
+    statistics.rankedSeasons[5][13].rankPoints
+  ]
+  create$td1.textContent = statArray[i]
+  return create$td1
+}
+
+function createComparisonHeader(playerName) {
+  var create$th = document.createElement('th')
+  create$th.textContent = playerName.displayName
+  return create$th
+}
+
 function generateData(event) {
   if (event.keyCode === 13) {
     var searchName = $search.value
@@ -348,6 +381,30 @@ function generateData(event) {
         $tableStatsMMR.appendChild(createStatMMR(player, num))
       }
       document.querySelector('#player-stats').appendChild(addComparisonSearch())
+      $searchCompare = document.querySelector('#search-bottom')
+      $searchCompare.addEventListener('keydown', generateComparison)
+    }
+  }
+}
+
+function generateComparison(event) {
+  if (event.keyCode === 13) {
+    var searchName = $searchCompare.value
+    var player = searchPlayer(searchName, data)
+    var $tableStats = document.querySelector('#player-stats-points')
+    var $tableMMR = document.querySelector('#player-stats-rank')
+    var $tableStatsRow = $tableStats.querySelectorAll('tr')
+    var $tableMMRRow = $tableMMR.querySelectorAll('tr')
+    if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[10] === undefined) {
+      var $tableCompareHeader = createComparisonHeader(player)
+      $tableStatsRow[0].appendChild($tableCompareHeader.cloneNode(true))
+      $tableMMRRow[0].appendChild($tableCompareHeader.cloneNode(true))
+      for (var num = 0; num < 6; num++) {
+        $tableStatsRow[(num + 1)].appendChild(createStatScoreComparison(player, num))
+      }
+      for (num = 0; num < 4; num++) {
+        $tableMMRRow[(num + 1)].appendChild(createStatMMRComparison(player, num))
+      }
     }
   }
 }
