@@ -180,6 +180,8 @@ function leaderBoardRow(player, i) {
 }
 
 var writeLeaderBoard = function updateLeaderBoard(event) {
+  showElement($leaderboard)
+  removeElement($playerStats)
   var leaderBoardList = createLeaderBoardArray(data, event.target.textContent)
   var leaderBoardDOM = document.querySelector('#leader-board')
   var createDiv = document.createElement('div')
@@ -194,7 +196,7 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
     $buttons2.addEventListener('click', writeLeaderBoard)
     leaderBoardDOM.appendChild(createDiv)
   }
-  if (event.target.textContent !== null && event.target.className !== 'buttons') {
+  if (event.target.textContent !== null && (event.target.className === 'statButton' || event.target.className === 'mmrButton')) {
     clearLeaderBoard(leaderBoardDiv)
     leaderBoardDiv.appendChild(leaderBoardHeader(event.target.textContent))
     for (var i = 0; i < leaderBoardList.length; i++) {
@@ -209,10 +211,17 @@ var $search = document.querySelector('#search-top')
 var $searchCompare = ''
 var $leaderboard = document.querySelector('#leader-board')
 var $playerStats = document.querySelector('#player-stats')
+var $siteLogo = document.querySelector('#site-logo')
+
+$siteLogo.addEventListener('click', writeLeaderBoard)
 
 function removeElement(element) {
   element.className += ' hidden'
   element.innerHTML = ''
+}
+
+function showElement(element) {
+  element.className -= ' hidden'
 }
 
 function clearLeaderBoard(div) {
@@ -357,7 +366,12 @@ function createStatMMRComparison(statistics, i) {
 
 function createComparisonHeader(playerName) {
   var create$th = document.createElement('th')
+  var create$button = document.createElement('button')
+  create$button.setAttribute('type', 'button')
+  create$button.className = 'removePlayer'
+  create$button.textContent = '(x)'
   create$th.textContent = playerName.displayName
+  create$th.appendChild(create$button)
   return create$th
 }
 
@@ -368,6 +382,7 @@ function generateData(event) {
     if (player !== undefined) {
       var $tableStats = document.querySelector('#player-stats')
       removeElement($leaderboard)
+      showElement($playerStats)
       clearPlayerStats()
       createPlayerName()
       var $tableStatsPoints = createStatHeader()
@@ -404,6 +419,29 @@ function generateComparison(event) {
       }
       for (num = 0; num < 4; num++) {
         $tableMMRRow[(num + 1)].appendChild(createStatMMRComparison(player, num))
+      }
+      $tableStats.addEventListener('click', removeComparison)
+      $tableMMR.addEventListener('click', removeComparison)
+    }
+  }
+}
+
+function removeComparison(event) {
+  var $tableStats = document.querySelector('#player-stats-points')
+  var $tableMMR = document.querySelector('#player-stats-rank')
+  var stat$th = $tableStats.querySelectorAll('th')
+  var mmr$th = $tableMMR.querySelectorAll('th')
+  var stat$tr = $tableStats.querySelectorAll('tr')
+  var mmr$tr = $tableMMR.querySelectorAll('tr')
+  for (var i = 0; i < stat$th.length; i++) {
+    if (event.target.parentElement.textContent === document.querySelectorAll('th')[i].textContent) {
+      stat$tr[0].removeChild(stat$th[i])
+      mmr$tr[0].removeChild(mmr$th[i])
+      for (var num = 1; num < stat$tr.length; num++) {
+        stat$tr[num].removeChild(stat$tr[num].querySelectorAll('td')[i])
+      }
+      for (num = 1; num < mmr$tr.length; num++) {
+        mmr$tr[num].removeChild(mmr$tr[num].querySelectorAll('td')[i])
       }
     }
   }
