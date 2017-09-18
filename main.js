@@ -77,10 +77,10 @@ function leaderBoardMMRButtons() {
   var createDoubles = document.createElement('button')
   var createSoloStandard = document.createElement('button')
   var createStandard = document.createElement('button')
-  createSoloDuel.className = 'button'
-  createDoubles.className = 'button'
-  createSoloStandard.className = 'button'
-  createStandard.className = 'button'
+  createSoloDuel.className = 'mmrButton'
+  createDoubles.className = 'mmrButton'
+  createSoloStandard.className = 'mmrButton'
+  createStandard.className = 'mmrButton'
   createSoloDuel.setAttribute('type', 'button')
   createDoubles.setAttribute('type', 'button')
   createSoloStandard.setAttribute('type', 'button')
@@ -109,12 +109,12 @@ function leaderBoardStatButtons() {
   var createSaves = document.createElement('button')
   var createShots = document.createElement('button')
   var createAssists = document.createElement('button')
-  createWins.className = 'button'
-  createGoals.className = 'button'
-  createMVPs.className = 'button'
-  createSaves.className = 'button'
-  createShots.className = 'button'
-  createAssists.className = 'button'
+  createWins.className = 'statButton'
+  createGoals.className = 'statButton'
+  createMVPs.className = 'statButton'
+  createSaves.className = 'statButton'
+  createShots.className = 'statButton'
+  createAssists.className = 'statButton'
   createWins.setAttribute('type', 'button')
   createGoals.setAttribute('type', 'button')
   createMVPs.setAttribute('type', 'button')
@@ -186,8 +186,8 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
   createDiv.id = 'leader-board-rows'
   var leaderBoardDiv = document.querySelector('#leader-board-rows')
   if (document.querySelector('.buttons') === null) {
-    leaderBoardDOM.appendChild(leaderBoardMMRButtons())
     leaderBoardDOM.appendChild(leaderBoardStatButtons())
+    leaderBoardDOM.appendChild(leaderBoardMMRButtons())
     var $buttons = document.querySelectorAll('.buttons')[0]
     var $buttons2 = document.querySelectorAll('.buttons')[1]
     $buttons.addEventListener('click', writeLeaderBoard)
