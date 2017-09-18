@@ -313,6 +313,21 @@ var searchPlayer = function (displayName, players) {
   }
 }
 
+function addComparisonSearch() {
+  var create$input = document.createElement('input')
+  var create$div = document.createElement('div')
+  var create$img = document.createElement('img')
+  create$input.id = 'search-bottom'
+  create$div.id = 'compare-search'
+  create$img.id = 'search-icon'
+  create$input.setAttribute('type', 'text')
+  create$input.setAttribute('placeholder', 'Comparison')
+  create$img.setAttribute('src', 'images/search-icon.png')
+  create$div.appendChild(create$input)
+  create$div.appendChild(create$img)
+  return create$div
+}
+
 function generateData(event) {
   if (event.keyCode === 13) {
     var searchName = $search.value
@@ -332,6 +347,7 @@ function generateData(event) {
       for (num = 0; num < 4; num++) {
         $tableStatsMMR.appendChild(createStatMMR(player, num))
       }
+      document.querySelector('#player-stats').appendChild(addComparisonSearch())
     }
   }
 }

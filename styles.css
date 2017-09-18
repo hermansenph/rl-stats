@@ -69,6 +69,36 @@ h1 {
   background-color: rgba(138, 189, 192, 0.5);
 }
 
+#search-bottom {
+  height: 2.5vw;
+  width: 8vw;
+  border-radius: 0.5vw;
+  margin-top: 0;
+  background-color: rgba(118, 169, 172, 0.75);
+  border: 0.1vw solid rgb(175, 175, 175);
+  font-size: 1.2vw;
+  padding: 0 3vw;
+  color: rgb(214, 252, 255);
+  font-family: 'Ubuntu';
+  position: relative;
+  left: 42.5vw;
+  top: 4.4vw;
+}
+
+#search-bottom::placeholder {
+  color: rgb(214, 252, 255);
+}
+
+#search-bottom:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
+  background-color: rgba(138, 189, 192, 0.75);
+}
+
+#compare-search {
+  width: 15%;
+}
+
 .row {
   margin: auto;
   padding: 0;
