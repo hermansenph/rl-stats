@@ -1,66 +1,66 @@
 /* global data */
-function createLeaderBoardArray(datamodel, gameMode) {
+function createLeaderBoardArray(dataModel, gameMode) {
   var leaderBoardArray = []
   var leaderBoardObject = {}
-  for (var i = 0; i < datamodel.length; i++) {
+  for (var i = 0; i < dataModel.length; i++) {
     if (gameMode === 'Solo Duel') {
       leaderBoardObject = {
-        mmr: datamodel[i].rankedSeasons[5][10].rankPoints,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].rankedSeasons[5][10].rankPoints,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Doubles') {
       leaderBoardObject = {
-        mmr: datamodel[i].rankedSeasons[5][11].rankPoints,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].rankedSeasons[5][11].rankPoints,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Solo Standard') {
       leaderBoardObject = {
-        mmr: datamodel[i].rankedSeasons[5][12].rankPoints,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].rankedSeasons[5][12].rankPoints,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Standard') {
       leaderBoardObject = {
-        mmr: datamodel[i].rankedSeasons[5][13].rankPoints,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].rankedSeasons[5][13].rankPoints,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Wins') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.wins,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.wins,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Goals') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.goals,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.goals,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'MVPs') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.mvps,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.mvps,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Saves') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.saves,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.saves,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Shots') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.shots,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.shots,
+        name: dataModel[i].displayName
       }
     }
     if (gameMode === 'Assists') {
       leaderBoardObject = {
-        mmr: datamodel[i].stats.assists,
-        name: datamodel[i].displayName
+        mmr: dataModel[i].stats.assists,
+        name: dataModel[i].displayName
       }
     }
     leaderBoardArray.push(leaderBoardObject)
