@@ -180,6 +180,8 @@ function leaderBoardRow(player, i) {
 }
 
 var writeLeaderBoard = function updateLeaderBoard(event) {
+  showElement($leaderboard)
+  removeElement($playerStats)
   var leaderBoardList = createLeaderBoardArray(data, event.target.textContent)
   var leaderBoardDOM = document.querySelector('#leader-board')
   var createDiv = document.createElement('div')
@@ -194,7 +196,7 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
     $buttons2.addEventListener('click', writeLeaderBoard)
     leaderBoardDOM.appendChild(createDiv)
   }
-  if (event.target.textContent !== null && event.target.className !== 'buttons') {
+  if (event.target.textContent !== null && (event.target.className === 'statButton' || event.target.className === 'mmrButton')) {
     clearLeaderBoard(leaderBoardDiv)
     leaderBoardDiv.appendChild(leaderBoardHeader(event.target.textContent))
     for (var i = 0; i < leaderBoardList.length; i++) {
@@ -206,12 +208,20 @@ var writeLeaderBoard = function updateLeaderBoard(event) {
 addEventListener('load', writeLeaderBoard)
 
 var $search = document.querySelector('#search-top')
+var $searchCompare = ''
 var $leaderboard = document.querySelector('#leader-board')
 var $playerStats = document.querySelector('#player-stats')
+var $siteLogo = document.querySelector('#site-logo')
+
+$siteLogo.addEventListener('click', writeLeaderBoard)
 
 function removeElement(element) {
   element.className = 'hidden'
   element.innerHTML = ''
+}
+
+function showElement(element) {
+  element.className = ''
 }
 
 function clearLeaderBoard(div) {
@@ -313,6 +323,58 @@ var searchPlayer = function (displayName, players) {
   }
 }
 
+function addComparisonSearch() {
+  var create$input = document.createElement('input')
+  var create$div = document.createElement('div')
+  var create$img = document.createElement('img')
+  create$input.id = 'search-bottom'
+  create$div.id = 'compare-search'
+  create$img.id = 'search-icon'
+  create$input.setAttribute('type', 'text')
+  create$input.setAttribute('placeholder', 'Comparison')
+  create$img.setAttribute('src', 'images/search-icon.png')
+  create$div.appendChild(create$input)
+  create$div.appendChild(create$img)
+  return create$div
+}
+
+function createStatScoreComparison(statistics, i) {
+  var create$td1 = document.createElement('td')
+  var statArray = [
+    statistics.stats.wins,
+    statistics.stats.goals,
+    statistics.stats.mvps,
+    statistics.stats.saves,
+    statistics.stats.shots,
+    statistics.stats.assists
+  ]
+  create$td1.textContent = statArray[i]
+  return create$td1
+}
+
+function createStatMMRComparison(statistics, i) {
+  var create$td1 = document.createElement('td')
+  var statArray = [
+    statistics.rankedSeasons[5][10].rankPoints,
+    statistics.rankedSeasons[5][11].rankPoints,
+    statistics.rankedSeasons[5][12].rankPoints,
+    statistics.rankedSeasons[5][13].rankPoints
+  ]
+  create$td1.textContent = statArray[i]
+  return create$td1
+}
+
+function createComparisonHeader(playerName) {
+  var create$th = document.createElement('th')
+  var create$button = document.createElement('button')
+  create$button.setAttribute('type', 'button')
+  create$button.className = 'removePlayer'
+  create$button.textContent = '(x)'
+  create$th.textContent = playerName.displayName
+  create$th.appendChild(create$button)
+  return create$th
+}
+
 function generateData(event) {
   if (event.keyCode === 13) {
     var searchName = $search.value
@@ -320,6 +382,7 @@ function generateData(event) {
     if (player !== undefined) {
       var $tableStats = document.querySelector('#player-stats')
       removeElement($leaderboard)
+      showElement($playerStats)
       clearPlayerStats()
       createPlayerName()
       var $tableStatsPoints = createStatHeader()
@@ -331,6 +394,54 @@ function generateData(event) {
       }
       for (num = 0; num < 4; num++) {
         $tableStatsMMR.appendChild(createStatMMR(player, num))
+      }
+      document.querySelector('#player-stats').appendChild(addComparisonSearch())
+      $searchCompare = document.querySelector('#search-bottom')
+      $searchCompare.addEventListener('keydown', generateComparison)
+    }
+  }
+}
+
+function generateComparison(event) {
+  if (event.keyCode === 13) {
+    var searchName = $searchCompare.value
+    var player = searchPlayer(searchName, data)
+    var $tableStats = document.querySelector('#player-stats-points')
+    var $tableMMR = document.querySelector('#player-stats-rank')
+    var $tableStatsRow = $tableStats.querySelectorAll('tr')
+    var $tableMMRRow = $tableMMR.querySelectorAll('tr')
+    if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[10] === undefined) {
+      var $tableCompareHeader = createComparisonHeader(player)
+      $tableStatsRow[0].appendChild($tableCompareHeader.cloneNode(true))
+      $tableMMRRow[0].appendChild($tableCompareHeader.cloneNode(true))
+      for (var num = 0; num < 6; num++) {
+        $tableStatsRow[(num + 1)].appendChild(createStatScoreComparison(player, num))
+      }
+      for (num = 0; num < 4; num++) {
+        $tableMMRRow[(num + 1)].appendChild(createStatMMRComparison(player, num))
+      }
+      $tableStats.addEventListener('click', removeComparison)
+      $tableMMR.addEventListener('click', removeComparison)
+    }
+  }
+}
+
+function removeComparison(event) {
+  var $tableStats = document.querySelector('#player-stats-points')
+  var $tableMMR = document.querySelector('#player-stats-rank')
+  var stat$th = $tableStats.querySelectorAll('th')
+  var mmr$th = $tableMMR.querySelectorAll('th')
+  var stat$tr = $tableStats.querySelectorAll('tr')
+  var mmr$tr = $tableMMR.querySelectorAll('tr')
+  for (var i = 0; i < stat$th.length; i++) {
+    if (event.target.parentElement.textContent === document.querySelectorAll('th')[i].textContent) {
+      stat$tr[0].removeChild(stat$th[i])
+      mmr$tr[0].removeChild(mmr$th[i])
+      for (var num = 1; num < stat$tr.length; num++) {
+        stat$tr[num].removeChild(stat$tr[num].querySelectorAll('td')[i])
+      }
+      for (num = 1; num < mmr$tr.length; num++) {
+        mmr$tr[num].removeChild(mmr$tr[num].querySelectorAll('td')[i])
       }
     }
   }

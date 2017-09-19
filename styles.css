@@ -13,12 +13,19 @@ body {
   height: 100%;
 }
 
-h1 {
+#site-logo {
   margin: 1vw 0 0;
   font-family: 'Ubuntu';
   color: rgb(214, 252, 255);
   font-size: 3vw;
   text-shadow: 0 0 0.2vw rgb(134, 172, 175);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#site-logo:focus {
+  outline: none;
 }
 
 .hidden {
@@ -69,6 +76,36 @@ h1 {
   background-color: rgba(138, 189, 192, 0.5);
 }
 
+#search-bottom {
+  height: 2.5vw;
+  width: 8vw;
+  border-radius: 0.5vw;
+  margin-top: 0;
+  background-color: rgba(118, 169, 172, 0.75);
+  border: 0.1vw solid rgb(175, 175, 175);
+  font-size: 1.2vw;
+  padding: 0 3vw;
+  color: rgb(214, 252, 255);
+  font-family: 'Ubuntu';
+  position: relative;
+  left: 42.5vw;
+  top: 4.4vw;
+}
+
+#search-bottom::placeholder {
+  color: rgb(214, 252, 255);
+}
+
+#search-bottom:focus {
+  outline: none;
+  box-shadow: 0 0 1vw rgb(214, 252, 255);
+  background-color: rgba(138, 189, 192, 0.75);
+}
+
+#compare-search {
+  width: 15%;
+}
+
 .row {
   margin: auto;
   padding: 0;
@@ -115,7 +152,7 @@ h1 {
 }
 
 #player-stats {
-  margin: 3.5% 0 0;
+  margin: 1% 0 0;
   text-align: center;
 }
 
@@ -151,6 +188,7 @@ td {
   color: rgb(214, 252, 255);
   font-size: 4vw;
   text-align: center;
+  margin: 0;
 }
 
 .mmrButton {
@@ -191,4 +229,14 @@ td {
   outline: none;
   box-shadow: 0 0 1vw rgb(214, 252, 255);
   background-color: rgba(71, 71, 71, 0.7);
+}
+
+.removePlayer {
+  border: 0.1vw solid rgba(150, 150, 150, 0.7);
+  border-radius: 2vw;
+  width: 2vw;
+  background: none;
+  color: rgb(214, 252, 255);
+  font-size: 0.5vw;
+  cursor: pointer;
 }
