@@ -216,12 +216,12 @@ var $siteLogo = document.querySelector('#site-logo')
 $siteLogo.addEventListener('click', writeLeaderBoard)
 
 function removeElement(element) {
-  element.className += ' hidden'
+  element.className = 'hidden'
   element.innerHTML = ''
 }
 
 function showElement(element) {
-  element.className -= ' hidden'
+  element.className = ''
 }
 
 function clearLeaderBoard(div) {
