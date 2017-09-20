@@ -1,76 +1,4 @@
 /* global data */
-function createLeaderBoardArray(dataModel, gameMode) {
-  var leaderBoardArray = []
-  var leaderBoardObject = {}
-  for (var i = 0; i < dataModel.length; i++) {
-    if (gameMode === 'Solo Duel') {
-      leaderBoardObject = {
-        mmr: dataModel[i].rankedSeasons[5][10].rankPoints,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Doubles') {
-      leaderBoardObject = {
-        mmr: dataModel[i].rankedSeasons[5][11].rankPoints,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Solo Standard') {
-      leaderBoardObject = {
-        mmr: dataModel[i].rankedSeasons[5][12].rankPoints,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Standard') {
-      leaderBoardObject = {
-        mmr: dataModel[i].rankedSeasons[5][13].rankPoints,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Wins') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.wins,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Goals') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.goals,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'MVPs') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.mvps,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Saves') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.saves,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Shots') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.shots,
-        name: dataModel[i].displayName
-      }
-    }
-    if (gameMode === 'Assists') {
-      leaderBoardObject = {
-        mmr: dataModel[i].stats.assists,
-        name: dataModel[i].displayName
-      }
-    }
-    leaderBoardArray.push(leaderBoardObject)
-  }
-  leaderBoardArray.sort(function (a, b) {
-    return parseFloat(b.mmr) - parseFloat(a.mmr)
-  })
-  return leaderBoardArray
-}
-
 function leaderBoardMMRButtons() {
   var createDiv = document.createElement('div')
   var createSoloDuel = document.createElement('button')
@@ -179,41 +107,11 @@ function leaderBoardRow(player, i) {
   return createUl
 }
 
-var writeLeaderBoard = function updateLeaderBoard(event) {
-  showElement($leaderboard)
-  removeElement($playerStats)
-  var leaderBoardList = createLeaderBoardArray(data, event.target.textContent)
-  var leaderBoardDOM = document.querySelector('#leader-board')
-  var createDiv = document.createElement('div')
-  createDiv.id = 'leader-board-rows'
-  var leaderBoardDiv = document.querySelector('#leader-board-rows')
-  if (document.querySelector('.buttons') === null) {
-    leaderBoardDOM.appendChild(leaderBoardStatButtons())
-    leaderBoardDOM.appendChild(leaderBoardMMRButtons())
-    var $buttons = document.querySelectorAll('.buttons')[0]
-    var $buttons2 = document.querySelectorAll('.buttons')[1]
-    $buttons.addEventListener('click', writeLeaderBoard)
-    $buttons2.addEventListener('click', writeLeaderBoard)
-    leaderBoardDOM.appendChild(createDiv)
-  }
-  if (event.target.textContent !== null && (event.target.className === 'statButton' || event.target.className === 'mmrButton')) {
-    clearLeaderBoard(leaderBoardDiv)
-    leaderBoardDiv.appendChild(leaderBoardHeader(event.target.textContent))
-    for (var i = 0; i < leaderBoardList.length; i++) {
-      leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[i], i))
-    }
-  }
-}
-
-addEventListener('load', writeLeaderBoard)
-
 var $search = document.querySelector('#search-top')
 var $searchCompare = ''
 var $leaderboard = document.querySelector('#leader-board')
 var $playerStats = document.querySelector('#player-stats')
 var $siteLogo = document.querySelector('#site-logo')
-
-$siteLogo.addEventListener('click', writeLeaderBoard)
 
 function removeElement(element) {
   element.className = 'hidden'
@@ -447,4 +345,320 @@ function removeComparison(event) {
   }
 }
 
+var writeLeaderBoard = function updateLeaderBoard(event) {
+  showElement($leaderboard)
+  removeElement($playerStats)
+  var leaderBoardList = leaderBoardArray
+  var leaderBoardDOM = document.querySelector('#leader-board')
+  var createDiv = document.createElement('div')
+  createDiv.id = 'leader-board-rows'
+  var leaderBoardDiv = document.querySelector('#leader-board-rows')
+  if (document.querySelector('.buttons') === null) {
+    leaderBoardDOM.appendChild(leaderBoardStatButtons())
+    leaderBoardDOM.appendChild(leaderBoardMMRButtons())
+    var $buttons = document.querySelectorAll('.buttons')[0]
+    var $buttons2 = document.querySelectorAll('.buttons')[1]
+    $buttons.addEventListener('click', writeLeaderBoard)
+    $buttons2.addEventListener('click', writeLeaderBoard)
+    leaderBoardDOM.appendChild(createDiv)
+  }
+  if (event.target.textContent !== null && (event.target.className === 'statButton' || event.target.className === 'mmrButton')) {
+    clearLeaderBoard(leaderBoardDiv)
+    leaderBoardDiv.appendChild(leaderBoardHeader(event.target.textContent))
+    if (event.target.textContent === 'Solo Duel') {
+      for (var i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[0][i], i))
+      }
+    }
+    if (event.target.textContent === 'Doubles') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[1][i], i))
+      }
+    }
+    if (event.target.textContent === 'Solo Standard') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[2][i], i))
+      }
+    }
+    if (event.target.textContent === 'Standard') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[3][i], i))
+      }
+    }
+    if (event.target.textContent === 'Wins') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[4][i], i))
+      }
+    }
+    if (event.target.textContent === 'Goals') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[5][i], i))
+      }
+    }
+    if (event.target.textContent === 'MVPs') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[6][i], i))
+      }
+    }
+    if (event.target.textContent === 'Saves') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[7][i], i))
+      }
+    }
+    if (event.target.textContent === 'Shots') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[8][i], i))
+      }
+    }
+    if (event.target.textContent === 'Assists') {
+      for (i = 0; i < 10; i++) {
+        leaderBoardDiv.appendChild(leaderBoardRow(leaderBoardList[9][i], i))
+      }
+    }
+  }
+}
+
+function soloDuelListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].rankedSeasons[5][10].rankPoints,
+      name: reqArray[i].displayName
+    }
+    soloDuelArray.push(leaderBoardObject)
+  }
+}
+
+function doublesListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].rankedSeasons[5][11].rankPoints,
+      name: reqArray[i].displayName
+    }
+    doublesArray.push(leaderBoardObject)
+  }
+}
+
+function soloStandardListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].rankedSeasons[5][12].rankPoints,
+      name: reqArray[i].displayName
+    }
+    soloStandardArray.push(leaderBoardObject)
+  }
+}
+
+function standardListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].rankedSeasons[5][13].rankPoints,
+      name: reqArray[i].displayName
+    }
+    standardArray.push(leaderBoardObject)
+  }
+}
+
+function winsListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.wins,
+      name: reqArray[i].displayName
+    }
+    winsArray.push(leaderBoardObject)
+  }
+}
+
+function goalsListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.goals,
+      name: reqArray[i].displayName
+    }
+    goalsArray.push(leaderBoardObject)
+  }
+}
+
+function mvpsListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.mvps,
+      name: reqArray[i].displayName
+    }
+    mvpsArray.push(leaderBoardObject)
+  }
+}
+
+function savesListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.saves,
+      name: reqArray[i].displayName
+    }
+    savesArray.push(leaderBoardObject)
+  }
+}
+
+function shotsListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.shots,
+      name: reqArray[i].displayName
+    }
+    shotsArray.push(leaderBoardObject)
+  }
+}
+
+function assistsListener() {
+  var reqArray = this.response
+  var leaderBoardObject = {}
+  for (var i = 0; i < 10; i++) {
+    leaderBoardObject = {
+      mmr: reqArray[i].stats.assists,
+      name: reqArray[i].displayName
+    }
+    assistsArray.push(leaderBoardObject)
+  }
+}
+
+function getSoloDuelLeaderboard() {
+  var soloDuelReq = new XMLHttpRequest()
+  soloDuelReq.addEventListener('load', soloDuelListener)
+  soloDuelReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=10&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  soloDuelReq.responseType = 'json'
+  soloDuelReq.send()
+}
+
+function getDoublesLeaderboard() {
+  var doublesReq = new XMLHttpRequest()
+  doublesReq.addEventListener('load', doublesListener)
+  doublesReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=11&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  doublesReq.responseType = 'json'
+  doublesReq.send()
+}
+
+function getSoloStandardLeaderboard() {
+  var soloStandardReq = new XMLHttpRequest()
+  soloStandardReq.addEventListener('load', soloStandardListener)
+  soloStandardReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=12&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  soloStandardReq.responseType = 'json'
+  soloStandardReq.send()
+}
+
+function getStandardLeaderboard() {
+  var standardReq = new XMLHttpRequest()
+  standardReq.addEventListener('load', standardListener)
+  standardReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=13&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  standardReq.responseType = 'json'
+  standardReq.send()
+}
+
+function getWinsLeaderboard() {
+  var winsReq = new XMLHttpRequest()
+  winsReq.addEventListener('load', winsListener)
+  winsReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=wins&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  winsReq.responseType = 'json'
+  winsReq.send()
+}
+
+function getGoalsLeaderboard() {
+  var goalsReq = new XMLHttpRequest()
+  goalsReq.addEventListener('load', goalsListener)
+  goalsReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=goals&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  goalsReq.responseType = 'json'
+  goalsReq.send()
+}
+
+function getMVPsLeaderboard() {
+  var mvpsReq = new XMLHttpRequest()
+  mvpsReq.addEventListener('load', mvpsListener)
+  mvpsReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=mvps&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  mvpsReq.responseType = 'json'
+  mvpsReq.send()
+}
+
+function getSavesLeaderboard() {
+  var savesReq = new XMLHttpRequest()
+  savesReq.addEventListener('load', savesListener)
+  savesReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=saves&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  savesReq.responseType = 'json'
+  savesReq.send()
+}
+
+function getShotsLeaderboard() {
+  var shotsReq = new XMLHttpRequest()
+  shotsReq.addEventListener('load', shotsListener)
+  shotsReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=shots&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  shotsReq.responseType = 'json'
+  shotsReq.send()
+}
+
+function getAssistsLeaderboard() {
+  var assistsReq = new XMLHttpRequest()
+  assistsReq.addEventListener('load', assistsListener)
+  assistsReq.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=assists&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  assistsReq.responseType = 'json'
+  assistsReq.send()
+}
+
+var soloDuelArray = []
+var doublesArray = []
+var soloStandardArray = []
+var standardArray = []
+var winsArray = []
+var goalsArray = []
+var mvpsArray = []
+var savesArray = []
+var shotsArray = []
+var assistsArray = []
+var leaderBoardArray = [
+  soloDuelArray,
+  doublesArray,
+  soloStandardArray,
+  standardArray,
+  winsArray,
+  goalsArray,
+  mvpsArray,
+  savesArray,
+  shotsArray,
+  assistsArray
+]
+
+addEventListener('load', writeLeaderBoard)
 $search.addEventListener('keydown', generateData)
+addEventListener('load', getSoloDuelLeaderboard)
+addEventListener('load', getDoublesLeaderboard)
+addEventListener('load', function () {
+  setTimeout(getSoloStandardLeaderboard, 1500)
+  setTimeout(getStandardLeaderboard, 1500)
+})
+addEventListener('load', function () {
+  setTimeout(getWinsLeaderboard, 3000)
+  setTimeout(getGoalsLeaderboard, 3000)
+})
+addEventListener('load', function () {
+  setTimeout(getMVPsLeaderboard, 4500)
+  setTimeout(getSavesLeaderboard, 4500)
+})
+addEventListener('load', function () {
+  setTimeout(getShotsLeaderboard, 6000)
+  setTimeout(getAssistsLeaderboard, 6000)
+})
+$siteLogo.addEventListener('click', writeLeaderBoard)
