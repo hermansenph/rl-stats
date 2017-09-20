@@ -1,4 +1,3 @@
-/* global data */
 function leaderBoardMMRButtons() {
   var createDiv = document.createElement('div')
   var createSoloDuel = document.createElement('button')
@@ -130,9 +129,9 @@ function clearPlayerStats() {
   $playerStats.innerHTML = ''
 }
 
-function createPlayerName() {
+function createPlayerName(searchValue) {
   var $playerName = document.createElement('p')
-  $playerName.textContent = $search.value
+  $playerName.textContent = searchValue.displayName
   $playerName.id = 'player-name'
   $playerStats.appendChild($playerName)
 }
@@ -213,11 +212,86 @@ function createStatMMR(statistics, i) {
   return create$tr1
 }
 
-var searchPlayer = function (displayName, players) {
-  for (var i = 0; i < players.length; i++) {
-    if (displayName === players[i].displayName) {
-      return players[i]
+var searchPlayer = function (searchValue) {
+  var searchReq = new XMLHttpRequest()
+  searchReq.addEventListener('load', searchListener)
+  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  searchReq.responseType = 'json'
+  searchReq.send()
+  function searchListener() {
+    if (searchReq.status === 200) {
+      var statObject = this.response
+      generateStats(statObject)
     }
+  }
+}
+
+var searchPlayerComparison = function (searchValue) {
+  var searchReq = new XMLHttpRequest()
+  searchReq.addEventListener('load', searchListener)
+  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  searchReq.responseType = 'json'
+  searchReq.send()
+  function searchListener() {
+    if (searchReq.status === 200) {
+      var statObject = this.response
+      generateComparison(statObject)
+    }
+  }
+}
+
+function generateStats(player) {
+  var $tableStats = document.querySelector('#player-stats')
+  removeElement($leaderboard)
+  showElement($playerStats)
+  clearPlayerStats()
+  createPlayerName(player)
+  var $tableStatsPoints = createStatHeader()
+  var $tableStatsMMR = createMMRHeader()
+  $tableStats.appendChild($tableStatsPoints)
+  $tableStats.appendChild($tableStatsMMR)
+  for (var num = 0; num < 6; num++) {
+    $tableStatsPoints.appendChild(createStatScore(player, num))
+  }
+  for (num = 0; num < 4; num++) {
+    $tableStatsMMR.appendChild(createStatMMR(player, num))
+  }
+  document.querySelector('#player-stats').appendChild(addComparisonSearch())
+  $searchCompare = document.querySelector('#search-bottom')
+  $searchCompare.addEventListener('keydown', generateComparisonData)
+}
+
+function generateData(event) {
+  if (event.keyCode === 13) {
+    var searchName = $search.value
+    searchPlayer(searchName)
+  }
+}
+
+function generateComparisonData(event) {
+  if (event.keyCode === 13) {
+    var searchName = $searchCompare.value
+    searchPlayerComparison(searchName)
+  }
+}
+
+function generateComparison(player) {
+  var $tableStats = document.querySelector('#player-stats-points')
+  var $tableMMR = document.querySelector('#player-stats-rank')
+  var $tableStatsRow = $tableStats.querySelectorAll('tr')
+  var $tableMMRRow = $tableMMR.querySelectorAll('tr')
+  if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[10] === undefined) {
+    var $tableCompareHeader = createComparisonHeader(player)
+    $tableStatsRow[0].appendChild($tableCompareHeader.cloneNode(true))
+    $tableMMRRow[0].appendChild($tableCompareHeader.cloneNode(true))
+    for (var num = 0; num < 6; num++) {
+      $tableStatsRow[(num + 1)].appendChild(createStatScoreComparison(player, num))
+    }
+    for (num = 0; num < 4; num++) {
+      $tableMMRRow[(num + 1)].appendChild(createStatMMRComparison(player, num))
+    }
+    $tableStats.addEventListener('click', removeComparison)
+    $tableMMR.addEventListener('click', removeComparison)
   }
 }
 
@@ -271,57 +345,6 @@ function createComparisonHeader(playerName) {
   create$th.textContent = playerName.displayName
   create$th.appendChild(create$button)
   return create$th
-}
-
-function generateData(event) {
-  if (event.keyCode === 13) {
-    var searchName = $search.value
-    var player = searchPlayer(searchName, data)
-    if (player !== undefined) {
-      var $tableStats = document.querySelector('#player-stats')
-      removeElement($leaderboard)
-      showElement($playerStats)
-      clearPlayerStats()
-      createPlayerName()
-      var $tableStatsPoints = createStatHeader()
-      var $tableStatsMMR = createMMRHeader()
-      $tableStats.appendChild($tableStatsPoints)
-      $tableStats.appendChild($tableStatsMMR)
-      for (var num = 0; num < 6; num++) {
-        $tableStatsPoints.appendChild(createStatScore(player, num))
-      }
-      for (num = 0; num < 4; num++) {
-        $tableStatsMMR.appendChild(createStatMMR(player, num))
-      }
-      document.querySelector('#player-stats').appendChild(addComparisonSearch())
-      $searchCompare = document.querySelector('#search-bottom')
-      $searchCompare.addEventListener('keydown', generateComparison)
-    }
-  }
-}
-
-function generateComparison(event) {
-  if (event.keyCode === 13) {
-    var searchName = $searchCompare.value
-    var player = searchPlayer(searchName, data)
-    var $tableStats = document.querySelector('#player-stats-points')
-    var $tableMMR = document.querySelector('#player-stats-rank')
-    var $tableStatsRow = $tableStats.querySelectorAll('tr')
-    var $tableMMRRow = $tableMMR.querySelectorAll('tr')
-    if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[10] === undefined) {
-      var $tableCompareHeader = createComparisonHeader(player)
-      $tableStatsRow[0].appendChild($tableCompareHeader.cloneNode(true))
-      $tableMMRRow[0].appendChild($tableCompareHeader.cloneNode(true))
-      for (var num = 0; num < 6; num++) {
-        $tableStatsRow[(num + 1)].appendChild(createStatScoreComparison(player, num))
-      }
-      for (num = 0; num < 4; num++) {
-        $tableMMRRow[(num + 1)].appendChild(createStatMMRComparison(player, num))
-      }
-      $tableStats.addEventListener('click', removeComparison)
-      $tableMMR.addEventListener('click', removeComparison)
-    }
-  }
 }
 
 function removeComparison(event) {
