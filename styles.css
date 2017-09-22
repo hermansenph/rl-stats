@@ -47,8 +47,8 @@ body {
 
 #search-icon {
   position: relative;
-  left: 37vw;
-  top: 1.5vw;
+  left: 37.1vw;
+  top: -0.5vw;
   width: 10%;
 }
 
@@ -75,6 +75,9 @@ body {
   color: rgb(234, 252, 255);
   font-family: 'Ubuntu';
   text-shadow: 0 0 1vw rgb(34, 72, 75);
+  left: 42.5vw;
+  top: 1.7vw;
+  position: relative;
 }
 
 #search-top::placeholder {
