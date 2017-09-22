@@ -281,7 +281,7 @@ function generateComparison(player) {
   var $tableMMR = document.querySelector('#player-stats-rank')
   var $tableStatsRow = $tableStats.querySelectorAll('tr')
   var $tableMMRRow = $tableMMR.querySelectorAll('tr')
-  if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[10] === undefined) {
+  if (player !== undefined && $tableStatsRow[0].querySelectorAll('th')[9] === undefined) {
     var $tableCompareHeader = createComparisonHeader(player)
     $tableStatsRow[0].appendChild($tableCompareHeader.cloneNode(true))
     $tableMMRRow[0].appendChild($tableCompareHeader.cloneNode(true))
@@ -302,7 +302,7 @@ function addComparisonSearch() {
   var create$img = document.createElement('img')
   create$input.id = 'search-bottom'
   create$div.id = 'compare-search'
-  create$img.id = 'search-icon'
+  create$img.id = 'search-icon-2'
   create$input.setAttribute('type', 'text')
   create$input.setAttribute('placeholder', 'Comparison')
   create$img.setAttribute('src', 'images/search-icon.png')

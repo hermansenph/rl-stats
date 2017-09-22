@@ -48,12 +48,19 @@ body {
 #search-icon {
   position: relative;
   left: 37vw;
-  top: 1.3vw;
+  top: 1.5vw;
+  width: 10%;
+}
+
+#search-icon-2 {
+  position: relative;
+  left: 37vw;
+  top: 2.3vw;
   width: 10%;
 }
 
 #icon-container {
-  width: 15%;
+  width: 15vw;
 }
 
 #search-top {
@@ -62,10 +69,10 @@ body {
   border-radius: 0.5vw;
   margin-top: -1vw;
   background-color: rgba(36, 83, 138, 0.9);
-  border: 0.1vw solid rgb(234, 252, 255);
+  border: 0.15vw solid rgb(234, 252, 255);
   font-size: 1.2vw;
   padding: 0 3vw;
-  color: rgb(214, 252, 255);
+  color: rgb(234, 252, 255);
   font-family: 'Ubuntu';
   text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
@@ -86,25 +93,27 @@ body {
   width: 8vw;
   border-radius: 0.5vw;
   margin-top: 0;
-  background-color: rgba(118, 169, 172, 0.75);
+  background-color: rgba(36, 83, 138, 0.75);
   border: 0.1vw solid rgb(234, 252, 255);
   font-size: 1.2vw;
   padding: 0 3vw;
-  color: rgb(214, 252, 255);
+  color: rgb(234, 252, 255);
   font-family: 'Ubuntu';
   position: relative;
   left: 42.5vw;
   top: 4.4vw;
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 #search-bottom::placeholder {
-  color: rgb(214, 252, 255);
+  color: rgb(234, 252, 255);
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 #search-bottom:focus {
   outline: none;
   box-shadow: 0 0 1vw rgb(214, 252, 255);
-  background-color: rgba(138, 189, 192, 0.75);
+  background-color: rgba(76, 111, 161, 0.75);
 }
 
 #compare-search {
@@ -115,6 +124,7 @@ body {
   margin: auto;
   padding: 0;
   list-style: none;
+  margin-bottom: -0.2vw;
 }
 
 .place {
@@ -122,15 +132,15 @@ body {
   font-size: 1vw;
   text-shadow: 0 0 1vw rgb(34, 72, 75);
   padding: 0.8vw 0;
-  border: 0.15vw solid rgb(215, 215, 215);
-  border-radius: 0.2vw;
+  border: 0.15vw solid rgb(234, 252, 255);
+  border-radius: 0.15vw;
   color: rgb(234, 252, 255);
   width: 7.22vw;
   height: 3vw;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
-  background-color: rgba(70, 70, 70, 0.9);
+  background-color: rgba(36, 83, 138, 0.9);
 }
 
 .player {
@@ -138,14 +148,14 @@ body {
   font-size: 1vw;
   text-shadow: 0 0 1vw rgb(34, 72, 75);
   padding: 0.8vw 3vw;
-  border: 0.15vw solid rgb(215, 215, 215);
-  border-radius: 0.2vw;
+  border: 0.15vw solid rgb(234, 252, 255);
+  border-radius: 0.15vw;
   color: rgb(234, 252, 255);
   width: 45.9vw;
   height: 3vw;
   box-sizing: border-box;
   display: inline-block;
-  background-color: rgba(70, 70, 70, 0.9);
+  background-color: rgba(36, 83, 138, 0.9);
 }
 
 .score {
@@ -153,15 +163,15 @@ body {
   font-size: 1vw;
   text-shadow: 0 0 1vw rgb(34, 72, 75);
   padding: 0.8vw 0;
-  border: 0.15vw solid rgb(215, 215, 215);
-  border-radius: 0.2vw;
+  border: 0.15vw solid rgb(234, 252, 255);
+  border-radius: 0.15vw;
   color: rgb(234, 252, 255);
   width: 6.87vw;
   height: 3vw;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
-  background-color: rgba(70, 70, 70, 0.9);
+  background-color: rgba(36, 83, 138, 0.9);
 }
 
 #player-stats {
@@ -170,26 +180,27 @@ body {
 }
 
 .table {
-  margin: auto 2vw;
+  margin: 1vw 2vw 0;
   display: inline-block;
   font-family: 'Ubuntu';
-  color: rgb(214, 252, 255);
+  color: rgb(234, 252, 255);
   font-size: 1.2vw;
-  background-color: rgba(41, 41, 41, 0.7);
+  background-color: rgba(36, 83, 138, 0.9);
   box-sizing: border-box;
   border-collapse: collapse;
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 th {
   font-size: 1.5vw;
-  border: 0.15vw solid rgb(234, 252, 255);
+  border: 0.2vw solid rgb(234, 252, 255);
   padding: 0.5vw 2vw;
   width: 4vw;
 }
 
 td {
   font-size: 1.2vw;
-  border: 0.15vw solid rgb(234, 252, 255);
+  border: 0.2vw solid rgb(234, 252, 255);
 }
 
 #player-stats-rank {
@@ -198,10 +209,16 @@ td {
 
 #player-name {
   font-family: 'Ubuntu';
-  color: rgb(214, 252, 255);
+  color: rgb(234, 252, 255);
   font-size: 4vw;
   text-align: center;
   margin: 0;
+  text-shadow:
+    -3px -3px 3px rgb(36, 83, 138),
+    3px -3px 3px rgb(36, 83, 138),
+    -3px 3px 3px rgb(36, 83, 138),
+    3px 3px 3px rgb(36, 83, 138),
+    0 0 1vw rgba(255, 255, 255, 0.1);
 }
 
 .mmrButton {
@@ -216,12 +233,14 @@ td {
   font-size: 1.2vw;
   color: rgb(234, 252, 255);
   cursor: pointer;
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 .mmrButton:focus {
   outline: none;
   box-shadow: 0 0 1vw rgb(214, 252, 255);
-  background-color: rgba(71, 71, 71, 0.7);
+  background-color: rgba(76, 111, 161, 0.7);
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 .statButton {
@@ -236,16 +255,20 @@ td {
   font-size: 1.2vw;
   color: rgb(234, 252, 255);
   cursor: pointer;
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 .statButton:focus {
   outline: none;
   box-shadow: 0 0 1vw rgb(214, 252, 255);
-  background-color: rgba(71, 71, 71, 0.7);
+  background-color: rgba(76, 111, 161, 0.7);
+  text-shadow: 0 0 1vw rgb(34, 72, 75);
 }
 
 .removePlayer {
-  border: 0.1vw solid rgba(150, 150, 150, 0.7);
+  border:
+    0.1vw solid rgba(150, 150, 150, 0.7),
+    0.2vw solid rgba(193, 21, 21, 0.2);
   border-radius: 2vw;
   width: 2vw;
   background: none;
