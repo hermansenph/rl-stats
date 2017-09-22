@@ -3,6 +3,7 @@ var $searchCompare = ''
 var $leaderboard = document.querySelector('#leader-board')
 var $playerStats = document.querySelector('#player-stats')
 var $siteLogo = document.querySelector('#site-logo')
+var apiKey = window.location.hash.slice(1)
 
 function leaderBoardMMRButtons() {
   var createDiv = document.createElement('div')
@@ -215,7 +216,7 @@ function createStatMMR(statistics, i) {
 var searchPlayer = function (searchValue) {
   var searchReq = new XMLHttpRequest()
   searchReq.addEventListener('load', searchListener)
-  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=' + apiKey, true)
   searchReq.responseType = 'json'
   searchReq.send()
   function searchListener() {
@@ -229,7 +230,7 @@ var searchPlayer = function (searchValue) {
 var searchPlayerComparison = function (searchValue) {
   var searchReq = new XMLHttpRequest()
   searchReq.addEventListener('load', searchListener)
-  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME', true)
+  searchReq.open('GET', 'https://api.rocketleaguestats.com/v1/player?unique_id=' + searchValue + '&platform_id=1&apikey=' + apiKey, true)
   searchReq.responseType = 'json'
   searchReq.send()
   function searchListener() {
@@ -445,7 +446,7 @@ var reqList = [
 
 function requestStats(type, done) {
   var xhr = new XMLHttpRequest()
-  xhr.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=' + type + '&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME')
+  xhr.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/stat?type=' + type + '&apikey=' + apiKey)
   xhr.responseType = 'json'
   xhr.addEventListener('load', function () {
     done(xhr.response)
@@ -455,7 +456,7 @@ function requestStats(type, done) {
 
 function requestMMR(type, done) {
   var xhr = new XMLHttpRequest()
-  xhr.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=' + type + '&apikey=UY5C423V91L8ZI1YEPXBBVP6Z8YVB5ME')
+  xhr.open('GET', 'https://api.rocketleaguestats.com/v1/leaderboard/ranked?playlist_id=' + type + '&apikey=' + apiKey)
   xhr.responseType = 'json'
   xhr.addEventListener('load', function () {
     done(xhr.response)
